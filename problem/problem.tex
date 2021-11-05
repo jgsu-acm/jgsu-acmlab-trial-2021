@@ -7,14 +7,17 @@
 \usepackage{graphicx}
 \usepackage{listing}
 
+% copy from https://tex.stackexchange.com/questions/271062/labeling-a-text-and-referencing-it-later
 \makeatletter
-\newcommand{\labeltext}[2]{%
+\newcommand{\labeltext}[2]{
   \@bsphack
-  \csname phantomsection\endcsname % in case hyperref is used
-  \def\@currentlabel{#1}{\label{#2}}%
+  \csname phantomsection\endcsname
+  \def\@currentlabel{#1}{\label{#2}}
   \@esphack
 }
 \makeatother
+
+\newcolumntype{M}{>{\centering\arraybackslash}X}
 
 \begin{document}
 
@@ -36,7 +39,7 @@
 	\end{center}
 
 	\section*{比赛信息}
-	\begin{tabularx}{450pt}{X|X|X|X}
+	\begin{tabularx}{450pt}{M|M|M|M}
 		\toprule
 		\textbf{赛制}       & \textbf{语言}       & \textbf{时长} & \textbf{题目数量} \\
 		\midrule
@@ -45,7 +48,7 @@
 	\end{tabularx}
 
 	\section*{题目概况}
-	\begin{tabularx}{450pt}{X|X|X|X|X|X}
+	\begin{tabularx}{450pt}{M|M|M|M|M|M}
 		\toprule
 		\textbf{题目编号} & \textbf{题目名称} & \textbf{运行时间上限} & \textbf{运行内存上限} & \textbf{题目类型} & \textbf{命题人} \\
 		\midrule
@@ -62,11 +65,11 @@
 	\small
 	\begin{tabularx}{450pt}{l|X}
 		\toprule
-		\verb|C(gcc 9.4)| & \verb|gcc -DONLINE_JUDGE -O2 -std=c11 {src} -lm -o {exe}|  \\
-		\verb|C++(g++ 9.4)| & \verb|g++ -DONLINE_JUDGE -O2 -std=c++14 {src} -lm -o {exe}|  \\
-		\verb|Java(OpenJDK 11)| & \verb|javac {src} -d {exe} -encoding UTF8|  \\
-		\verb|Python2.7| & \verb|python -m py_compile {src}|  \\
-		\verb|Python3.6| & \verb|python3 -m py_compile {src}| \\
+		\verb|C(gcc 9.4)| & \verb|gcc -DONLINE_JUDGE -O2 -w -std=c11 {src_path} -lm -o {exe_path}|  \\
+		\verb|C++(g++ 9.4)| & \verb|g++ -DONLINE_JUDGE -O2 -w -std=c++14 {src_path} -lm -o {exe_path}|  \\
+		\verb|Java(OpenJDK 11)| & \verb|javac {src_path} -d {exe_path} -encoding UTF8|  \\
+		\verb|Python2.7| & \verb|python -m py_compile {src_path}|  \\
+		\verb|Python3.6| & \verb|python3 -m py_compile {src_path}| \\
 		\bottomrule
 	\end{tabularx}
 	\normalsize
@@ -155,7 +158,7 @@ AgOH: ？？？？？？……不慌，实验室的成员们应该能帮我解�
 注：中国象棋中棋子“马”的行动规则（不考虑蹩马腿）：每步一直一斜，即先横着或直着走一格，然后再斜着走一个对角线，俗称“马走日”。棋子不能走出棋盘。如图所示的$8$个绿点为$(4,7)$位置上的马的行动范围。
 
 \begin{center}
-	\includegraphics[scale=0.1]{knight.jpg}
+	\includegraphics[scale=0.1]{images/chess.jpg}
 \end{center}
 
 \section*{输入格式}
@@ -204,11 +207,13 @@ AgOH: ？？？？？？……不慌，实验室的成员们应该能帮我解�
 
 例如：如下双端队列最多可以弹出$4$个元素，操作顺序为弹出队首元素$2$、弹出队尾元素$3$、弹出队尾元素$4$、弹出队尾元素$5$。
 
-\begin{tabularx}{200pt}{X|X|X|X|X}
-	\toprule
-	2 & 1 & 5 & 4 & 3 \\
-	\bottomrule
-\end{tabularx}
+\begin{center}
+	\begin{tabularx}{200pt}{M|M|M|M|M}
+		\toprule
+		2 & 1 & 5 & 4 & 3 \\
+		\bottomrule
+	\end{tabularx}
+\end{center}
 
 \section*{输入格式}
 第一行，一个整数，$n(1 \leq n \leq 5 \times 10^5)$。
@@ -303,7 +308,7 @@ AgOH会对你进行$m$次询问，每次询问一个区间$[l,r]$，请你告诉
 
 既然都坐成了棋牌室的样子了，不打打麻将实在是说不过去。
 
-当然比赛过程中打一局完整的麻将是不现实的，你只需要判断一副手牌是否和牌即可。
+当然比赛过程中打一局完整的麻将是不现实的，你只需要判断一副手牌是否是和牌即可。
 
 \begin{remark}
 	\hspace{0.15cm} \textbf{和牌规则}：对于手中的14张手牌，和牌需达成以下条件：
@@ -314,13 +319,13 @@ AgOH会对你进行$m$次询问，每次询问一个区间$[l,r]$，请你告诉
         \item 雀头和各个面子间没有交叉的牌
     \end{itemize}
 
-	\hspace{0.15cm} \textbf{雀头}：两张同花色的牌，如 \includegraphics[scale=0.5]{mahjong/1s.png} \includegraphics[scale=0.5]{mahjong/1s.png}
+	\hspace{0.15cm} \textbf{雀头}：两张同花色的牌，如 \includegraphics[scale=0.5]{images/mahjong/1s.png} \includegraphics[scale=0.5]{images/mahjong/1s.png}
 	
     \hspace{0.15cm} \textbf{面子}：包括 \textbf{刻子} 和 \textbf{顺子} (不要问为啥没杠，莫抬杠)
 
     \begin{itemize}
-        \item \textbf{刻子}：三张同花色的牌，如 \includegraphics[scale=0.5]{mahjong/1m.png} \includegraphics[scale=0.5]{mahjong/1m.png} \includegraphics[scale=0.5]{mahjong/1m.png}。
-        \item \textbf{顺子}：三张相邻的同类型牌（只包括条/索、饼/筒、万三种），如 \includegraphics[scale=0.5]{mahjong/1m.png} \includegraphics[scale=0.5]{mahjong/2m.png} \includegraphics[scale=0.5]{mahjong/3m.png}。\includegraphics[scale=0.5]{mahjong/9m.png} 与\includegraphics[scale=0.5]{mahjong/1m.png}、\includegraphics[scale=0.5]{mahjong/9p.png} 与\includegraphics[scale=0.5]{mahjong/1p.png}、\includegraphics[scale=0.5]{mahjong/9s.png} 与\includegraphics[scale=0.5]{mahjong/1s.png} 不算作相邻
+        \item \textbf{刻子}：三张同花色的牌，如 \includegraphics[scale=0.5]{images/mahjong/1m.png} \includegraphics[scale=0.5]{images/mahjong/1m.png} \includegraphics[scale=0.5]{images/mahjong/1m.png}。
+        \item \textbf{顺子}：三张相邻的同类型牌（只包括条/索、饼/筒、万三种），如 \includegraphics[scale=0.5]{images/mahjong/1m.png} \includegraphics[scale=0.5]{images/mahjong/2m.png} \includegraphics[scale=0.5]{images/mahjong/3m.png}。\includegraphics[scale=0.5]{images/mahjong/9m.png} 与\includegraphics[scale=0.5]{images/mahjong/1m.png}、\includegraphics[scale=0.5]{images/mahjong/9p.png} 与\includegraphics[scale=0.5]{images/mahjong/1p.png}、\includegraphics[scale=0.5]{images/mahjong/9s.png} 与\includegraphics[scale=0.5]{images/mahjong/1s.png} 不算作相邻
     \end{itemize}
     
 \end{remark}
@@ -332,15 +337,16 @@ AgOH会对你进行$m$次询问，每次询问一个区间$[l,r]$，请你告诉
 第$2 \sim t+1$行，每行$14$个用空格分隔开的双字符字符串，代表一副手牌。手牌表示规则如下：
 
 \begin{itemize}
-	\item 一个$1 \sim 9$的数字$x+$一个小写字母$b$，代表$x$饼（也叫$x$筒）。例如$2b$代表 \includegraphics[scale=0.5]{mahjong/2p.png}。
-	\item 一个$1 \sim 9$的数字$x+$一个小写字母$t$，代表$x$条（也叫$x$索）。例如$8t$代表 \includegraphics[scale=0.5]{mahjong/8s.png}。
-	\item 一个$1 \sim 9$的数字$x+$一个小写字母$w$，代表$x$万。例如$5w$代表 \includegraphics[scale=0.5]{mahjong/5m.png}。
-	\item 一个$1 \sim 7$的数字$x+$一个小写字母$z$，从$1z \sim 7z$分别代表 \includegraphics[scale=0.5]{mahjong/1z.png}、\includegraphics[scale=0.5]{mahjong/2z.png}、\includegraphics[scale=0.5]{mahjong/3z.png}、\includegraphics[scale=0.5]{mahjong/4z.png}、\includegraphics[scale=0.5]{mahjong/5z.png}、\includegraphics[scale=0.5]{mahjong/6z.png}、\includegraphics[scale=0.5]{mahjong/7z.png}。
+	\item 一个$1 \sim 9$的数字$x+$一个小写字母$b$，代表$x$饼（也叫$x$筒）。例如$2b$代表 \includegraphics[scale=0.5]{images/mahjong/2p.png}。
+	\item 一个$1 \sim 9$的数字$x+$一个小写字母$t$，代表$x$条（也叫$x$索）。例如$8t$代表 \includegraphics[scale=0.5]{images/mahjong/8s.png}。
+	\item 一个$1 \sim 9$的数字$x+$一个小写字母$w$，代表$x$万。例如$5w$代表 \includegraphics[scale=0.5]{images/mahjong/5m.png}。
+	\item 一个$1 \sim 7$的数字$x+$一个小写字母$z$，从$1z \sim 7z$分别代表 \includegraphics[scale=0.5]{images/mahjong/1z.png}、\includegraphics[scale=0.5]{images/mahjong/2z.png}、\includegraphics[scale=0.5]{images/mahjong/3z.png}、\includegraphics[scale=0.5]{images/mahjong/4z.png}、\includegraphics[scale=0.5]{images/mahjong/5z.png}、\includegraphics[scale=0.5]{images/mahjong/6z.png}、\includegraphics[scale=0.5]{images/mahjong/7z.png}。
 \end{itemize}
 
 数据保证只会出现以上样式的牌。与正常的一副麻将不同，每张牌的出现次数\textbf{不限}，例如可能出现14张白的情况，且这种情况是和牌。
 
 \section*{输出格式}
+共$t$行，第$i$行代表第$i$组数据的答案：若该组牌为和牌，输出\lstinline{Tsumo!}；反之输出\lstinline{Waiting for Tsumo!}
 
 \section*{输入输出样例}
 \begin{tabularx}{450pt}{X|X}
@@ -368,12 +374,7 @@ AgOH会对你进行$m$次询问，每次询问一个区间$[l,r]$，请你告诉
 	\toprule
 	输入样例 & 输出样例 \\
 	\midrule
-    5 & Waiting for Tsumo!\\
-    1w 2w 3w 4b 5b 6b 7t 8t 9t 1b 1b 1z 2z 6z & Waiting for Tsumo!\\
-    1w 2w 3w 4b 5b 6b 7t 8t 9t 1b 1b 2z 2z 6z & Tsumo!\\
-    1w 2w 3w 4b 5b 6b 7t 8t 9t 1b 1b 2z 2z 2z & Waiting for Tsumo!\\
-    1b 2b 3b 4b 5b 6b 2t 4t 5t 5t 5t 6t 7t 8t & Waiting for Tsumo!\\
-    1b 1b 1b 2b 3b 4b 5b 6b 7b 8b 9b 9b 9b 1t &\\
+
 	\bottomrule
 \end{tabularx}
 
