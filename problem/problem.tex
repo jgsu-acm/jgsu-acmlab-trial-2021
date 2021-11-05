@@ -27,7 +27,7 @@
 \labeltext{双端队列}{pro:3} \labeltext{1000ms}{tim:3} \labeltext{256M}{mem:3} \labeltext{传统}{typ:3} \labeltext{AgOH}{aut:3}
 \labeltext{水的体积}{pro:4} \labeltext{1000ms}{tim:4} \labeltext{256M}{mem:4} \labeltext{传统}{typ:4} \labeltext{AgOH}{aut:4}
 \labeltext{棋牌室}{pro:5} 	\labeltext{1000ms}{tim:5} \labeltext{256M}{mem:5} \labeltext{传统}{typ:5} \labeltext{Tifa}{aut:5}
-\labeltext{xxx}{pro:6} 		\labeltext{1000ms}{tim:6} \labeltext{256M}{mem:6} \labeltext{传统}{typ:6} \labeltext{Tifa}{aut:6}
+\labeltext{倍思亲}{pro:6} 	\labeltext{1000ms}{tim:6} \labeltext{256M}{mem:6} \labeltext{传统}{typ:6} \labeltext{AgOH}{aut:6}
 
 \begin{titlepage}
 	\begin{center}
@@ -313,21 +313,21 @@ AgOH会对你进行$m$次询问，每次询问一个区间$[l,r]$，请你告诉
 \begin{remark}
 	\hspace{0.15cm} \textbf{和牌规则}：对于手中的14张手牌，和牌需达成以下条件：
 
-    \begin{itemize}
-        \item 有一个 \textbf{雀头}。
-        \item 有四个 \textbf{面子}。
-        \item 雀头和各个面子间没有交叉的牌
-    \end{itemize}
+	\begin{itemize}
+		\item 有一个 \textbf{雀头}。
+		\item 有四个 \textbf{面子}。
+		\item 雀头和各个面子间没有交叉的牌
+	\end{itemize}
 
 	\hspace{0.15cm} \textbf{雀头}：两张同花色的牌，如 \includegraphics[scale=0.5]{images/mahjong/1s.png} \includegraphics[scale=0.5]{images/mahjong/1s.png}
-	
-    \hspace{0.15cm} \textbf{面子}：包括 \textbf{刻子} 和 \textbf{顺子} (不要问为啥没杠，莫抬杠)
 
-    \begin{itemize}
-        \item \textbf{刻子}：三张同花色的牌，如 \includegraphics[scale=0.5]{images/mahjong/1m.png} \includegraphics[scale=0.5]{images/mahjong/1m.png} \includegraphics[scale=0.5]{images/mahjong/1m.png}。
-        \item \textbf{顺子}：三张相邻的同类型牌（只包括条/索、饼/筒、万三种），如 \includegraphics[scale=0.5]{images/mahjong/1m.png} \includegraphics[scale=0.5]{images/mahjong/2m.png} \includegraphics[scale=0.5]{images/mahjong/3m.png}。\includegraphics[scale=0.5]{images/mahjong/9m.png} 与\includegraphics[scale=0.5]{images/mahjong/1m.png}、\includegraphics[scale=0.5]{images/mahjong/9p.png} 与\includegraphics[scale=0.5]{images/mahjong/1p.png}、\includegraphics[scale=0.5]{images/mahjong/9s.png} 与\includegraphics[scale=0.5]{images/mahjong/1s.png} 不算作相邻
-    \end{itemize}
-    
+	\hspace{0.15cm} \textbf{面子}：包括 \textbf{刻子} 和 \textbf{顺子} (不要问为啥没杠，莫抬杠)
+
+	\begin{itemize}
+		\item \textbf{刻子}：三张同花色的牌，如 \includegraphics[scale=0.5]{images/mahjong/1m.png} \includegraphics[scale=0.5]{images/mahjong/1m.png} \includegraphics[scale=0.5]{images/mahjong/1m.png}。
+		\item \textbf{顺子}：三张相邻的同类型牌（只包括条/索、饼/筒、万三种），如 \includegraphics[scale=0.5]{images/mahjong/1m.png} \includegraphics[scale=0.5]{images/mahjong/2m.png} \includegraphics[scale=0.5]{images/mahjong/3m.png}。\includegraphics[scale=0.5]{images/mahjong/9m.png} 与\includegraphics[scale=0.5]{images/mahjong/1m.png}、\includegraphics[scale=0.5]{images/mahjong/9p.png} 与\includegraphics[scale=0.5]{images/mahjong/1p.png}、\includegraphics[scale=0.5]{images/mahjong/9s.png} 与\includegraphics[scale=0.5]{images/mahjong/1s.png} 不算作相邻
+	\end{itemize}
+
 \end{remark}
 
 
@@ -364,10 +364,21 @@ AgOH会对你进行$m$次询问，每次询问一个区间$[l,r]$，请你告诉
 \end{center}
 
 \section*{题目描述}
+游戏《明日方舟》里，干员异客的攻击方式为：攻击造成\textbf{法术伤害}，且会在$4$个敌人间跳跃，每次跳跃伤害降低$15\%$并造成短暂停顿。
+
+法术伤害会受到敌人\textbf{法抗}的百分比削减，即若对一个\textbf{法抗}为$p\%$的敌人造成$s$点\textbf{法术伤害}，该敌人仅会受到$s \times (1-p\%)$点\textbf{真实伤害}。
+
+假设敌人具有无限点血量，给出异客的攻击力和四个被击中的敌人的法抗，请你计算出异客一次攻击造成了多少伤害。
+
+注意：因为敌人的血量为整数，所以对\textbf{每个敌人}打出的\textbf{真实伤害}都需要向下取整。
 
 \section*{输入格式}
+第一行，一个整数$t$，代表共有$t$组数据。
+
+第$2 \sim t+1$行，每行$5$个整数，分别代表异客的攻击力$A(1 \leq A \leq 1500)$和依次被击中的$4$个敌人的法抗$k_1,k_2,k_3,k_4(0 \leq k_i \leq 100)$
 
 \section*{输出格式}
+共$t$行，第$i$行代表第$i$组数据的答案
 
 \section*{输入输出样例}
 \begin{tabularx}{450pt}{X|X}
