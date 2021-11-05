@@ -303,8 +303,27 @@ AgOH会对你进行$m$次询问，每次询问一个区间$[l,r]$，请你告诉
 
 既然都坐成了棋牌室的样子了，不打打麻将实在是说不过去。
 
-当然比赛过程中打一局完整的麻将是不现实的，你只需要判断一副手牌是否胡牌即可。
+当然比赛过程中打一局完整的麻将是不现实的，你只需要判断一副手牌是否和牌即可。
 
+\begin{remark}
+	\hspace{0.15cm} \textbf{和牌规则}：对于手中的14张手牌，和牌需达成以下条件：
+
+    \begin{itemize}
+        \item 有一个 \textbf{雀头}。
+        \item 有四个 \textbf{面子}。
+        \item 雀头和各个面子间没有交叉的牌
+    \end{itemize}
+
+	\hspace{0.15cm} \textbf{雀头}：两张同花色的牌，如 \includegraphics[scale=0.5]{mahjong/1s.png} \includegraphics[scale=0.5]{mahjong/1s.png}
+	
+    \hspace{0.15cm} \textbf{面子}：包括 \textbf{刻子} 和 \textbf{顺子} (不要问为啥没杠，莫抬杠)
+
+    \begin{itemize}
+        \item \textbf{刻子}：三张同花色的牌，如 \includegraphics[scale=0.5]{mahjong/1m.png} \includegraphics[scale=0.5]{mahjong/1m.png} \includegraphics[scale=0.5]{mahjong/1m.png}。
+        \item \textbf{顺子}：三张相邻的同类型牌（只包括条/索、饼/筒、万三种），如 \includegraphics[scale=0.5]{mahjong/1m.png} \includegraphics[scale=0.5]{mahjong/2m.png} \includegraphics[scale=0.5]{mahjong/3m.png}。\includegraphics[scale=0.5]{mahjong/9m.png} 与\includegraphics[scale=0.5]{mahjong/1m.png}、\includegraphics[scale=0.5]{mahjong/9p.png} 与\includegraphics[scale=0.5]{mahjong/1p.png}、\includegraphics[scale=0.5]{mahjong/9s.png} 与\includegraphics[scale=0.5]{mahjong/1s.png} 不算作相邻
+    \end{itemize}
+    
+\end{remark}
 
 
 \section*{输入格式}
@@ -313,13 +332,13 @@ AgOH会对你进行$m$次询问，每次询问一个区间$[l,r]$，请你告诉
 第$2 \sim t+1$行，每行$14$个用空格分隔开的双字符字符串，代表一副手牌。手牌表示规则如下：
 
 \begin{itemize}
-	\item 一个$1 \sim 9$的数字$x+$一个小写字母$b$，代表$x$饼（也叫$x$筒）。例如$2b$代表$2$饼。
-	\item 一个$1 \sim 9$的数字$x+$一个小写字母$t$，代表$x$条（也叫$x$索）。例如$8t$代表$8$条。
-	\item 一个$1 \sim 9$的数字$x+$一个小写字母$w$，代表$x$万。例如$5w$代表$5$万。
-	\item 一个$1 \sim 7$的数字$x+$一个小写字母$z$，从$1z \sim 7z$分别代表东、西、南、北、中、发、白。
+	\item 一个$1 \sim 9$的数字$x+$一个小写字母$b$，代表$x$饼（也叫$x$筒）。例如$2b$代表 \includegraphics[scale=0.5]{mahjong/2p.png}。
+	\item 一个$1 \sim 9$的数字$x+$一个小写字母$t$，代表$x$条（也叫$x$索）。例如$8t$代表 \includegraphics[scale=0.5]{mahjong/8s.png}。
+	\item 一个$1 \sim 9$的数字$x+$一个小写字母$w$，代表$x$万。例如$5w$代表 \includegraphics[scale=0.5]{mahjong/5m.png}。
+	\item 一个$1 \sim 7$的数字$x+$一个小写字母$z$，从$1z \sim 7z$分别代表 \includegraphics[scale=0.5]{mahjong/1z.png}、\includegraphics[scale=0.5]{mahjong/2z.png}、\includegraphics[scale=0.5]{mahjong/3z.png}、\includegraphics[scale=0.5]{mahjong/4z.png}、\includegraphics[scale=0.5]{mahjong/5z.png}、\includegraphics[scale=0.5]{mahjong/6z.png}、\includegraphics[scale=0.5]{mahjong/7z.png}。
 \end{itemize}
 
-数据保证只会出现以上样式的牌。与正常的一副麻将不同，每张牌的出现次数\textbf{不限}，例如可能出现14张白的情况，且这种情况是胡牌。
+数据保证只会出现以上样式的牌。与正常的一副麻将不同，每张牌的出现次数\textbf{不限}，例如可能出现14张白的情况，且这种情况是和牌。
 
 \section*{输出格式}
 
@@ -349,7 +368,12 @@ AgOH会对你进行$m$次询问，每次询问一个区间$[l,r]$，请你告诉
 	\toprule
 	输入样例 & 输出样例 \\
 	\midrule
-
+    5 & Waiting for Tsumo!\\
+    1w 2w 3w 4b 5b 6b 7t 8t 9t 1b 1b 1z 2z 6z & Waiting for Tsumo!\\
+    1w 2w 3w 4b 5b 6b 7t 8t 9t 1b 1b 2z 2z 6z & Tsumo!\\
+    1w 2w 3w 4b 5b 6b 7t 8t 9t 1b 1b 2z 2z 2z & Waiting for Tsumo!\\
+    1b 2b 3b 4b 5b 6b 2t 4t 5t 5t 5t 6t 7t 8t & Waiting for Tsumo!\\
+    1b 1b 1b 2b 3b 4b 5b 6b 7b 8b 9b 9b 9b 1t &\\
 	\bottomrule
 \end{tabularx}
 
