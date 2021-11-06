@@ -4,7 +4,7 @@
 	color=blue
 ]{elegantbook}
 \usepackage{tabularx,booktabs} 
-\usepackage{listing}
+\usepackage{listings}
 \usepackage{xr}
 \externaldocument{../problem/problem}
 
@@ -36,18 +36,82 @@
             \bottomrule
         \end{tabularx}
     \end{center}
+
+    \section*{鸣谢}
+    感谢Tifa大佬为本次比赛贡献的题目
+
+    \paragraph*{注意：因篇幅显示，部分标程省略了头文件部分。}
+
 \end{titlepage}
 
 \chapter*{A.\quad \ref*{pro:1}}
+\section*{做法}
+
+\section*{标程}
 
 \chapter*{B.\quad \ref*{pro:2}}
+\section*{做法}
+
+\section*{标程}
 
 \chapter*{C.\quad \ref*{pro:3}}
+\section*{做法}
+
+\section*{标程}
 
 \chapter*{D.\quad \ref*{pro:4}}
+\section*{做法}
+
+\section*{标程}
 
 \chapter*{E.\quad \ref*{pro:5}}
+\section*{做法}
+
+\section*{标程}
 
 \chapter*{F.\quad \ref*{pro:6}}
+\section*{做法}
+签到题，题意即求出$\lfloor A \times (1-p1\%) \times (85\%)^0 \rfloor + \lfloor A \times (1-p2\%) \times (85\%)^1 \rfloor + \lfloor A \times (1-p3\%) \times (85\%)^2 \rfloor + \lfloor A \times (1-p4\%) \times (85\%)^3 \rfloor$的值
+
+可以使用秦九韶算法，也可以\lstinline{cout}一行搞定。
+
+\section*{标程}
+\lstinline{cout}一行搞定：
+\begin{lstlisting}
+int main()
+{
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        int A,p1,p2,p3,p4;
+        cin>>A>>p1>>p2>>p3>>p4;
+        cout<<((int)(A*(1-p1/100.0)) + (int)(A * 0.85 * (1-p2/100.0)) + (int)(A * 0.85 * 0.85 * (1-p3/100.0)) + (int)(A * 0.85 * 0.85 * 0.85 * (1-p4/100.0)))<<endl;
+    }
+    return 0;
+}
+\end{lstlisting}
+
+秦九韶算法：
+\begin{lstlisting}
+int p[7];
+int main()
+{
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        int A;
+        cin>>A;
+        for(int i=1;i<=4;i++) cin>>p[i];
+        double mul = 1;
+        int sum = 0;
+        for(int i=1;i<=4;i++, mul *= 0.85)
+            sum += (int)(A * mul * (1 - p[i] / 100.0));
+        cout<<sum<<endl;
+    }
+    return 0;
+}
+\end{lstlisting}
 
 \end{document}
