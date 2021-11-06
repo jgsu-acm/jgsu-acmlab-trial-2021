@@ -7,3 +7,5 @@
 *.bcf
 *.xml
 *.synctex(busy)
+*.upa
+*.upb

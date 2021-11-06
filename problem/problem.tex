@@ -6,6 +6,8 @@
 \usepackage{tabularx,booktabs} 
 \usepackage{graphicx}
 \usepackage{listing}
+\usepackage{pdfcomment}
+\usepackage{bookmark}
 
 % copy from https://tex.stackexchange.com/questions/271062/labeling-a-text-and-referencing-it-later
 \makeatletter
@@ -86,6 +88,7 @@
 \end{titlepage}
 
 \chapter*{A.\quad \ref*{pro:1}}
+\addcontentsline{toc}{chapter}{A.\ref*{pro:1}}
 \begin{center}
 	运行时间上限：\ref*{tim:1} \quad 运行内存上限：\ref*{mem:1} \quad 题目类型：\ref*{typ:1} \quad 命题人：\ref*{aut:1}
 \end{center}
@@ -144,6 +147,7 @@ AgOH: ？？？？？？……不慌，实验室的成员们应该能帮我解�
 
 \newpage
 \chapter*{B.\quad \ref*{pro:2}}
+\addcontentsline{toc}{chapter}{B.\ref*{pro:2}}
 \begin{center}
 	运行时间上限：\ref*{tim:2} \quad 运行内存上限：\ref*{mem:2} \quad 题目类型：\ref*{typ:2} \quad 命题人：\ref*{aut:2}
 \end{center}
@@ -196,6 +200,7 @@ AgOH: ？？？？？？……不慌，实验室的成员们应该能帮我解�
 
 \newpage
 \chapter*{C.\quad \ref*{pro:3}}
+\addcontentsline{toc}{chapter}{C.\ref*{pro:3}}
 \begin{center}
 	运行时间上限：\ref*{tim:3} \quad 运行内存上限：\ref*{mem:3} \quad 题目类型：\ref*{typ:3} \quad 命题人：\ref*{aut:3}
 \end{center}
@@ -265,6 +270,7 @@ AgOH: ？？？？？？……不慌，实验室的成员们应该能帮我解�
 
 \newpage
 \chapter*{D.\quad  \ref*{pro:4}}
+\addcontentsline{toc}{chapter}{D.\ref*{pro:4}}
 \begin{center}
 	运行时间上限：\ref*{tim:4} \quad 运行内存上限：\ref*{mem:4} \quad 题目类型：\ref*{typ:4} \quad 命题人：\ref*{aut:4}
 \end{center}
@@ -299,6 +305,7 @@ AgOH会对你进行$m$次询问，每次询问一个区间$[l,r]$，请你告诉
 
 \newpage
 \chapter*{E.\quad \ref*{pro:5}}
+\addcontentsline{toc}{chapter}{E.\ref*{pro:5}}
 \begin{center}
 	运行时间上限：\ref*{tim:5} \quad 运行内存上限：\ref*{mem:5} \quad 题目类型：\ref*{typ:5} \quad 命题人：\ref*{aut:5}
 \end{center}
@@ -378,6 +385,7 @@ AgOH会对你进行$m$次询问，每次询问一个区间$[l,r]$，请你告诉
 
 \newpage
 \chapter*{F.\quad \ref*{pro:6}}
+\addcontentsline{toc}{chapter}{F.\ref*{pro:6}}
 \begin{center}
 	运行时间上限：\ref*{tim:6} \quad 运行内存上限：\ref*{mem:6} \quad 题目类型：\ref*{typ:6} \quad 命题人：\ref*{aut:6}
 \end{center}

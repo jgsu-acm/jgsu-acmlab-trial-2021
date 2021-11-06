@@ -61,6 +61,7 @@
 \end{titlepage}
 
 \chapter*{A.\quad \ref*{pro:1}}
+\addcontentsline{toc}{chapter}{A.\ref*{pro:1}}
 \section*{做法}
 
 本题考查对线性筛算法的理解。
@@ -80,6 +81,7 @@
 \section*{标程}
 
 \chapter*{B.\quad \ref*{pro:2}}
+\addcontentsline{toc}{chapter}{B.\ref*{pro:2}}
 \section*{做法}
 数据规模较小，直接根据题意搜索模拟马跳的过程即可。
 
@@ -118,6 +120,7 @@ int main()
 \end{lstlisting}
 
 \chapter*{C.\quad \ref*{pro:3}}
+\addcontentsline{toc}{chapter}{C.\ref*{pro:3}}
 \section*{做法}
 因为只有弹出操作，所以本题并不是考察双端队列的用法，只是起了这样一个名字而已……
 
@@ -157,6 +160,7 @@ int main()
 \end{lstlisting}
 
 \chapter*{D.\quad \ref*{pro:4}}
+\addcontentsline{toc}{chapter}{D.\ref*{pro:4}}
 \section*{做法}
 \paragraph*{暴力做法} 对于每次询问都使用循环来统计区间内数字和的方法的时间复杂度为$O(mn)$，对于本题$1e5$的数据规模显然不能通过。
 
@@ -196,6 +200,7 @@ int main()
 \end{lstlisting}
 
 \chapter*{E.\quad \ref*{pro:5}}
+\addcontentsline{toc}{chapter}{E.\ref*{pro:5}}
 \section*{做法}
 
 一个模拟题，写法很多。这里给出其中一种
@@ -207,6 +212,7 @@ int main()
 \section*{标程}
 
 \chapter*{F.\quad \ref*{pro:6}}
+\addcontentsline{toc}{chapter}{F.\ref*{pro:6}}
 \section*{做法}
 签到题，题意即求出$\lfloor A \times (1-p1\%) \times (85\%)^0 \rfloor + \lfloor A \times (1-p2\%) \times (85\%)^1 \rfloor + \lfloor A \times (1-p3\%) \times (85\%)^2 \rfloor + \lfloor A \times (1-p4\%) \times (85\%)^3 \rfloor$的值。可以使用秦九韶算法，也可以\lstinline{cout}一行搞定。
 
