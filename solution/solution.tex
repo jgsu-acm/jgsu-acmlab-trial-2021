@@ -81,13 +81,80 @@
 
 \chapter*{B.\quad \ref*{pro:2}}
 \section*{做法}
+数据规模较小，直接根据题意搜索模拟马跳的过程即可。
 
 \section*{标程}
+\begin{lstlisting}
+#include <iostream>
+#include <cstring>
+using namespace std;
+int ans[15][15];
+int x2,y2;  // 终点
+void dfs(int x,int y,int cnt)   // x,y：当前走到了哪个点；cnt：当前已走了几步
+{
+    // 其实还可以进行其它剪枝，留作思考题
+    if(cnt>=ans[x][y]) return;   // 若当前花费的步数已经大于等于之前走到此处花费的步数，则不用继续走了
+    ans[x][y]=min(ans[x][y],cnt);   // 更新答案
+    if(x==x2&&y==y2) return;    // 若走到终点则不用走了
+    // 分别尝试往八个方向走，并且使花费的步数+1。注意用if判断防止走到棋盘外
+    if(x-2>=1&&y-1>=1) dfs(x-2,y-1,cnt+1);
+    if(x-2>=1&&y+1<=9) dfs(x-2,y+1,cnt+1);
+    if(x-1>=1&&y-2>=1) dfs(x-1,y-2,cnt+1);
+    if(x-1>=1&&y+2<=9) dfs(x-1,y+2,cnt+1);
+    if(x+1<=10&&y-2>=1) dfs(x+1,y-2,cnt+1);
+    if(x+1<=10&&y+2<=9) dfs(x+1,y+2,cnt+1);
+    if(x+2<=10&&y-1>=1) dfs(x+2,y-1,cnt+1);
+    if(x+2<=10&&y+1<=9) dfs(x+2,y+1,cnt+1);
+}
+int main()
+{
+    int x1,y1;
+    cin>>x1>>y1>>x2>>y2;
+    memset(ans, 0x3f, sizeof(ans));     // 要求最小值，ans数组设置为无穷大
+    dfs(x1,y1,0);
+    cout<<ans[x2][y2]<<endl;
+    return 0;
+}
+\end{lstlisting}
 
 \chapter*{C.\quad \ref*{pro:3}}
 \section*{做法}
+因为只有弹出操作，所以本题并不是考察双端队列的用法，只是起了这样一个名字而已……
+
+例如对于题目样例给出的双端队列$2,1,5,4,3$，第一次弹出应该弹出什么？显然应该弹出$2$而不是$3$，因为若弹出3则再也不能弹出$2$了，但弹出$2$后还可以弹出$3$。
+
+所以本题利用贪心思想即可解决：在两侧都能弹出的时候弹出数字较小的一侧的数字；否则哪边能弹出就弹出哪边；当两边都不能弹出或队列为空时输出答案即可。
+
+因为题目所给数据只是$1 \sim n$的一个排列（数字不会重复），所以难度较低。本题也可以扩展到数字可以重复的情况，留作思考题。
 
 \section*{标程}
+\begin{lstlisting}
+#include <iostream>
+using namespace std;
+const int maxn = 5e5+5;
+int q[maxn];
+int main()
+{
+    int n;
+    cin>>n;
+    for(int i=0;i<n;i++) cin>>q[i];
+    int l=0, r=n-1, cnt=0, last=-1;         // last用于记录上一次弹出的数据，初始为无穷小
+    while(l<=r)
+    {
+        if(q[l]<last&&q[r]<last) break;
+        ++cnt;
+        if(q[l]>last&&q[r]>last)            // 若两边都能弹出，弹出数值较小的一边
+        {
+            if(q[l]<q[r]) last=q[l++];
+            else last=q[r--];
+        }
+        else if(q[l]>last) last=q[l++];     // 只有左边能弹出
+        else last=q[r--];                   // 只有右边能弹出
+    }
+    cout<<cnt<<endl;
+    return 0;
+}
+\end{lstlisting}
 
 \chapter*{D.\quad \ref*{pro:4}}
 \section*{做法}
