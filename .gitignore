@@ -6,3 +6,4 @@
 *.synctex.gz
 *.bcf
 *.xml
+*.synctex(busy)
