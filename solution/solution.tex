@@ -6,9 +6,24 @@
 \usepackage{tabularx,booktabs} 
 \usepackage{listings}
 \usepackage{xr}
+\usepackage{hyperref}
 \externaldocument{../problem/problem}
 
 \newcolumntype{M}{>{\centering\arraybackslash}X}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily,
+    keywordstyle=\color{blue}\ttfamily,
+    stringstyle=\color{brown}\ttfamily,
+    commentstyle=\color{teal}\ttfamily,
+    morecomment=[l][\color{brown}]{\#}
+}
+
+\hypersetup{
+    colorlinks=true,
+	urlcolor=blue
+}
 
 \begin{document}
 
@@ -37,10 +52,11 @@
         \end{tabularx}
     \end{center}
 
-    \section*{鸣谢}
-    感谢Tifa大佬为本次比赛贡献的题目
+    \paragraph*{} 注意：因篇幅显示，部分标程省略了头文件部分。
+    \paragraph*{} 所有标程代码均可以在\url{https://github.com/jgsu-acm/jgsu-acmlab-trial-2021}找到。
 
-    \paragraph*{注意：因篇幅显示，部分标程省略了头文件部分。}
+    \section*{鸣谢}
+    感谢Tifa大佬为本次比赛贡献的题目。
 
 \end{titlepage}
 
@@ -75,8 +91,42 @@
 
 \chapter*{D.\quad \ref*{pro:4}}
 \section*{做法}
+\paragraph*{暴力做法} 对于每次询问都使用循环来统计区间内数字和的方法的时间复杂度为$O(mn)$，对于本题$1e5$的数据规模显然不能通过。
+
+\paragraph*{正解} 需要使用一种叫做“前缀和”的简单算法。
+
+注意到$$a_l+a_{l+1}+ \cdots + a_r = (a_1 + a_2 + \cdots + a_r) - (a_1 + a_2 + \cdots + a_{l-1})$$
+
+我们定义$$pre_i = a_1 + a_2 + \cdots + a_i$$
+
+于是$$a_l+a_{l+1}+ \cdots + a_r = pre_r - pre_{l-1}$$
+
+所以对于每次$[l,r]$查询，只需要$O(1)$的时间复杂度即可得出结果，而$pre_i$可以通过$pre_i = pre_{i-1} + a_i$的递推式从而在$O(n)$的时间复杂度内推出来。总时间复杂度为$O(n+m)$。
 
 \section*{标程}
+\begin{lstlisting}
+#include <iostream>
+using namespace std;
+const int maxn = 1e5+5;
+int pre[maxn];
+int main()
+{
+    int n,m;
+    cin>>n>>m;
+    for(int i=1;i<=n;i++)       // O(n)处理出pre (pre[i]=pre[i-1]+a[i])
+    {
+        int x;
+        cin>>x;
+        pre[i]=pre[i-1]+x;
+    }
+    while(m--)                  // O(m)处理所有询问
+    {
+        int l,r;
+        cin>>l>>r;
+        cout<<pre[r]-pre[l-1]<<endl;
+    }
+}
+\end{lstlisting}
 
 \chapter*{E.\quad \ref*{pro:5}}
 \section*{做法}
@@ -91,9 +141,7 @@
 
 \chapter*{F.\quad \ref*{pro:6}}
 \section*{做法}
-签到题，题意即求出$\lfloor A \times (1-p_1\%) \times (85\%)^0 \rfloor + \lfloor A \times (1-p_2\%) \times (85\%)^1 \rfloor + \lfloor A \times (1-p_3\%) \times (85\%)^2 \rfloor + \lfloor A \times (1-p_4\%) \times (85\%)^3 \rfloor$的值
-
-可以使用秦九韶算法，也可以\lstinline{cout}一行搞定。
+签到题，题意即求出$\lfloor A \times (1-p1\%) \times (85\%)^0 \rfloor + \lfloor A \times (1-p2\%) \times (85\%)^1 \rfloor + \lfloor A \times (1-p3\%) \times (85\%)^2 \rfloor + \lfloor A \times (1-p4\%) \times (85\%)^3 \rfloor$的值。可以使用秦九韶算法，也可以\lstinline{cout}一行搞定。
 
 \section*{标程}
 \lstinline{cout}一行搞定：
