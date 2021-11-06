@@ -14,25 +14,25 @@
 
 \begin{titlepage}
     \begin{center}
-		\LARGE
-		\textbf{ACM算法与微应用开发实验室21届成员选拔赛题解} \par
-		\normalsize
-		\vspace{0.5cm}
-		2021年11月6日
-	\end{center}
+        \LARGE
+        \textbf{ACM算法与微应用开发实验室21届成员选拔赛题解} \par
+        \normalsize
+        \vspace{0.5cm}
+        2021年11月6日
+    \end{center}
 
     \section*{题目概览}
     \begin{center}
         \begin{tabularx}{\textwidth}{M|M|M|M}
             \toprule
-            \textbf{题目编号} & \textbf{题目名称} &\textbf{出题人} & \textbf{做法} \\
+            \textbf{题目编号} & \textbf{题目名称} & \textbf{出题人} & \textbf{做法} \\
             \midrule
-            A & \ref*{pro:1} & \ref*{aut:1} &线性筛 \\
-            B & \ref*{pro:2} & \ref*{aut:2} &搜索 \\
-            C & \ref*{pro:3} & \ref*{aut:3} &贪心 \\
-            D & \ref*{pro:4} & \ref*{aut:4} &前缀和 \\
-            E & \ref*{pro:5} & \ref*{aut:5} &模拟 \\
-            F & \ref*{pro:6} & \ref*{aut:6} &模拟\\
+            A                 & \ref*{pro:1}      & \ref*{aut:1}    & 线性筛        \\
+            B                 & \ref*{pro:2}      & \ref*{aut:2}    & 搜索          \\
+            C                 & \ref*{pro:3}      & \ref*{aut:3}    & 贪心          \\
+            D                 & \ref*{pro:4}      & \ref*{aut:4}    & 前缀和        \\
+            E                 & \ref*{pro:5}      & \ref*{aut:5}    & 模拟          \\
+            F                 & \ref*{pro:6}      & \ref*{aut:6}    & 模拟          \\
             \bottomrule
         \end{tabularx}
     \end{center}
@@ -46,6 +46,20 @@
 
 \chapter*{A.\quad \ref*{pro:1}}
 \section*{做法}
+
+本题考查对线性筛算法的理解。
+
+我们回想一下线性筛在干什么，首先我们有一个 \verb|visit| 数组用来存我们是否已经筛过当前的数，还有个 \verb|prime| 数组记录我们筛出的素数。
+
+我们从2开始遍历，如果当前的数没被筛掉，那它就是素数。同时对于我们枚举的每个数 $i$，我们把 $i$ 与素数 $p_j$ 的乘积筛掉，也就是在 visit 数组打上标记，$p_j$ 要满足 $p_j<p$, 其中 $p$ 是 $i$ 的最小素因子，这样能确保每个数都会被不重不漏地访问一遍。
+
+那我们怎么找 $k-$素数呢？
+
+我们再定义一个数组 \verb|k_cnt[]|, \verb|k_cnt[i]| 表示 i 能表示为多少个素数的乘积。显然，对所有的素数 $p$, \verb|k_cnt[p]| 都应赋为 1。并且 \verb|k_cnt[i * p] = k_cnt[i] + 1|
+
+所以我们只需要在标记 $i\times p_j$ 时把 \verb|k_cnt[i * prime[j]]| 赋为 \verb|k_cnt[i] + 1| 即可
+
+完全 $k-$素数同理
 
 \section*{标程}
 
@@ -66,6 +80,12 @@
 
 \chapter*{E.\quad \ref*{pro:5}}
 \section*{做法}
+
+一个模拟题，写法很多。这里给出其中一种
+
+我们考虑枚举出雀头，删去雀头的两张牌后判断剩余的12张牌是否为4个面子。
+
+我们可以直接对每种牌模3，之后判断剩下的牌是不是顺子即可
 
 \section*{标程}
 
