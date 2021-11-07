@@ -9,7 +9,56 @@
 \usepackage{hyperref}
 \externaldocument{../problem/problem}
 
+\title{ACM算法与微应用开发实验室21届成员选拔赛题解}
+\date{2021年11月6日}
+\makeatletter
+\renewcommand{\maketitle}{
+	\begin{center}
+		\LARGE
+		\textbf{\@title} \par
+		\normalsize
+		\vspace{0.5cm}
+		\@date
+	\end{center}
+}
+
+\newcommand{\labeltext}[2]{
+  \@bsphack
+  \csname phantomsection\endcsname
+  \def\@currentlabel{#1}{\label{#2}}
+  \@esphack
+}
+\makeatother
+
 \newcolumntype{M}{>{\centering\arraybackslash}X}
+
+\newcommand{\solutiontab}[2]{
+	\begin{tabularx}{#2}{M|M|M|M}
+		\toprule
+		\textbf{题目编号} & \textbf{题目名称} & \textbf{命题人} & \textbf{做法} \\
+		\midrule
+	\end{tabularx}
+
+	\foreach \i in #1{
+		\begin{tabularx}{#2}{M|M|M|M}
+			\i & \ref*{pro:\i} & \ref*{aut:\i} & \ref*{ans:\i} \\
+		\end{tabularx}
+
+	}
+
+	\begin{tabularx}{#2}{M|M|M|M}
+		\toprule
+	\end{tabularx}
+}
+
+\newcommand{\addsolution}[2]{
+    \labeltext{#2}{ans:#1}
+}
+
+\newcommand{\solutionheader}[1]{
+	\chapter*{#1.\quad \ref*{pro:#1}}
+	\addcontentsline{toc}{chapter}{A.\ref*{pro:#1}}
+}
 
 \lstset{
     language=C++,
@@ -27,31 +76,17 @@
 }
 
 \begin{document}
+\addsolution{A}{线性筛}
+\addsolution{B}{搜索}
+\addsolution{C}{贪心}
+\addsolution{D}{前缀和}
+\addsolution{E}{模拟}
+\addsolution{F}{模拟}
 
 \begin{titlepage}
-    \begin{center}
-        \LARGE
-        \textbf{ACM算法与微应用开发实验室21届成员选拔赛题解} \par
-        \normalsize
-        \vspace{0.5cm}
-        2021年11月6日
-    \end{center}
-
+    \maketitle
     \section*{题目概览}
-    \begin{center}
-        \begin{tabularx}{\textwidth}{M|M|M|M}
-            \toprule
-            \textbf{题目编号} & \textbf{题目名称} & \textbf{出题人} & \textbf{做法} \\
-            \midrule
-            A                 & \ref*{pro:1}      & \ref*{aut:1}    & 线性筛        \\
-            B                 & \ref*{pro:2}      & \ref*{aut:2}    & 搜索          \\
-            C                 & \ref*{pro:3}      & \ref*{aut:3}    & 贪心          \\
-            D                 & \ref*{pro:4}      & \ref*{aut:4}    & 前缀和        \\
-            E                 & \ref*{pro:5}      & \ref*{aut:5}    & 模拟          \\
-            F                 & \ref*{pro:6}      & \ref*{aut:6}    & 模拟          \\
-            \bottomrule
-        \end{tabularx}
-    \end{center}
+    \solutiontab{{A,B,C,D,E,F}}{450pt}
 
     \paragraph*{} 注意：因篇幅显示，部分标程省略了头文件部分。
     \paragraph*{} 本次比赛在Github上开源(\url{https://github.com/jgsu-acm/jgsu-acmlab-trial-2021})。包括通知、题目、题解的 \LaTeX 源码及所有标程。
@@ -61,8 +96,7 @@
 
 \end{titlepage}
 
-\chapter*{A.\quad \ref*{pro:1}}
-\addcontentsline{toc}{chapter}{A.\ref*{pro:1}}
+\solutionheader{A}
 \section*{做法}
 
 本题考查对线性筛算法的理解。
@@ -146,8 +180,7 @@ int main()
 }
 \end{lstlisting}
 
-\chapter*{B.\quad \ref*{pro:2}}
-\addcontentsline{toc}{chapter}{B.\ref*{pro:2}}
+\solutionheader{B}
 \section*{做法}
 数据规模较小，直接根据题意搜索模拟马跳的过程即可。
 
@@ -185,8 +218,7 @@ int main()
 }
 \end{lstlisting}
 
-\chapter*{C.\quad \ref*{pro:3}}
-\addcontentsline{toc}{chapter}{C.\ref*{pro:3}}
+\solutionheader{C}
 \section*{做法}
 因为只有弹出操作，所以本题并不是考察双端队列的用法，只是起了这样一个名字而已……
 
@@ -225,8 +257,7 @@ int main()
 }
 \end{lstlisting}
 
-\chapter*{D.\quad \ref*{pro:4}}
-\addcontentsline{toc}{chapter}{D.\ref*{pro:4}}
+\solutionheader{D}
 \section*{做法}
 \paragraph*{暴力做法} 对于每次询问都使用循环来统计区间内数字和的方法的时间复杂度为$O(mn)$，对于本题$1e5$的数据规模显然不能通过。
 
@@ -265,8 +296,7 @@ int main()
 }
 \end{lstlisting}
 
-\chapter*{E.\quad \ref*{pro:5}}
-\addcontentsline{toc}{chapter}{E.\ref*{pro:5}}
+\solutionheader{E}
 \section*{做法}
 
 一个模拟题，写法很多。这里给出其中一种
@@ -353,8 +383,7 @@ int main()
 }
 \end{lstlisting}
 
-\chapter*{F.\quad \ref*{pro:6}}
-\addcontentsline{toc}{chapter}{F.\ref*{pro:6}}
+\solutionheader{F}
 \section*{做法}
 签到题，题意即求出$\lfloor A \times (1-p1\%) \times (85\%)^0 \rfloor + \lfloor A \times (1-p2\%) \times (85\%)^1 \rfloor + \lfloor A \times (1-p3\%) \times (85\%)^2 \rfloor + \lfloor A \times (1-p4\%) \times (85\%)^3 \rfloor$的值。可以使用秦九韶算法，也可以\lstinline{cout}一行搞定。
 
