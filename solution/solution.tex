@@ -158,7 +158,7 @@ int main()
             cout<<"1 1"<<endl<<"1 1"<<endl;
             continue;
         }
-        int ktot=0, kans=0, exktot=0, exkans=0; // 注意异或和处置为0因为0异或任何数结果等于这个数
+        int ktot=0, kans=0, exktot=0, exkans=0; // 注意异或和初值为0因为0异或任何数结果等于这个数
         if(k<=kcntmax[n])   // 质数因子个数最多的数字都不能由k个质数拼出来的话直接byebye。以下同理
         {
             for(int i=1;i<=n;i++)
