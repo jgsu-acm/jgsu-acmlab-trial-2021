@@ -3,12 +3,10 @@ using namespace std;
 const int maxn = 2e6+5;
 bool vis[maxn];
 int cnt, prime[maxn];
-int kcnt[maxn], exkcnt[maxn];
-int kcntmax[maxn], exkcntmax[maxn];
+int kcnt[maxn], exkcnt[maxn], kcntmax[maxn], exkcntmax[maxn];
 int main()
 {
-    // 首先进行线性筛
-    for(int i=2;i<maxn;i++)
+    for(int i=2;i<maxn;i++) // 首先进行线性筛
     {
         if(!vis[i])
         {
@@ -22,6 +20,7 @@ int main()
             if(i%prime[j]==0) break;    // 找到了i的最小素因子
             // 当i和prime[j]互质时继续执行
             if(exkcnt[i]) exkcnt[i*prime[j]]=exkcnt[i]+1;   // 只有当i没有平方因子的时候才是完全k素数
+        }
     }
     for(int i=2;i<maxn;i++) // 处理出前i个数中最大由多少个质数相乘得到
     {

@@ -118,12 +118,10 @@ using namespace std;
 const int maxn = 2e6+5;
 bool vis[maxn];
 int cnt, prime[maxn];
-int kcnt[maxn], exkcnt[maxn];
-int kcntmax[maxn], exkcntmax[maxn];
+int kcnt[maxn], exkcnt[maxn], kcntmax[maxn], exkcntmax[maxn];
 int main()
 {
-    // 首先进行线性筛
-    for(int i=2;i<maxn;i++)
+    for(int i=2;i<maxn;i++) // 首先进行线性筛
     {
         if(!vis[i])
         {
