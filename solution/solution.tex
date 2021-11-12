@@ -135,7 +135,8 @@ int main()
             vis[i*prime[j]]=true;   // 这个数不是质数
             kcnt[i*prime[j]]=kcnt[i]+1; // 显然i*prime[j]这个数因为多乘上了一个质数所以可以由kcnt[i]+1个质数相乘来得到
             if(i%prime[j]==0) break;    // 找到了i的最小素因子
-            if(exkcnt[i]) exkcnt[i*prime[j]]=exkcnt[i]+1;   // 只有当i是质数的时候才是完全k素数
+            // 当i和prime[j]互质时继续执行
+            if(exkcnt[i]) exkcnt[i*prime[j]]=exkcnt[i]+1;   // 只有当i没有平方因子的时候才是完全k素数
         }
     }
 \end{lstlisting}
