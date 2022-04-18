@@ -1,7 +1,7 @@
 %!TEX program = xelatex
 \documentclass[
-	lang=cn,
-	color=blue
+    lang=cn,
+    color=blue
 ]{elegantbook}
 \usepackage{tabularx,booktabs} 
 \usepackage{listings}
@@ -13,13 +13,13 @@
 \date{2021年11月6日}
 \makeatletter
 \renewcommand{\maketitle}{
-	\begin{center}
-		\LARGE
-		\textbf{\@title} \par
-		\normalsize
-		\vspace{0.5cm}
-		\@date
-	\end{center}
+    \begin{center}
+        \LARGE
+        \textbf{\@title} \par
+        \normalsize
+        \vspace{0.5cm}
+        \@date
+    \end{center}
 }
 
 \newcommand{\labeltext}[2]{
@@ -33,22 +33,22 @@
 \newcolumntype{M}{>{\centering\arraybackslash}X}
 
 \newcommand{\solutiontab}[2]{
-	\begin{tabularx}{#2}{M|M|M|M}
-		\toprule
-		\textbf{题目编号} & \textbf{题目名称} & \textbf{命题人} & \textbf{做法} \\
-		\midrule
-	\end{tabularx}
+    \begin{tabularx}{#2}{M|M|M|M}
+        \toprule
+        \textbf{题目编号} & \textbf{题目名称} & \textbf{命题人} & \textbf{做法} \\
+        \midrule
+    \end{tabularx}
 
-	\foreach \i in #1{
-		\begin{tabularx}{#2}{M|M|M|M}
-			\i & \ref*{pro:\i} & \ref*{aut:\i} & \ref*{ans:\i} \\
-		\end{tabularx}
+    \foreach \i in #1{
+        \begin{tabularx}{#2}{M|M|M|M}
+            \i & \ref*{pro:\i} & \ref*{aut:\i} & \ref*{ans:\i} \\
+        \end{tabularx}
 
-	}
+    }
 
-	\begin{tabularx}{#2}{M|M|M|M}
-		\toprule
-	\end{tabularx}
+    \begin{tabularx}{#2}{M|M|M|M}
+        \toprule
+    \end{tabularx}
 }
 
 \newcommand{\addsolution}[2]{
@@ -56,8 +56,8 @@
 }
 
 \newcommand{\solutionheader}[1]{
-	\chapter*{#1.\quad \ref*{pro:#1}}
-	\addcontentsline{toc}{chapter}{A.\ref*{pro:#1}}
+    \chapter*{#1.\quad \ref*{pro:#1}}
+    \addcontentsline{toc}{chapter}{A.\ref*{pro:#1}}
 }
 
 \lstset{
@@ -72,7 +72,7 @@
 
 \hypersetup{
     colorlinks=true,
-	urlcolor=blue
+    urlcolor=blue
 }
 
 \begin{document}
