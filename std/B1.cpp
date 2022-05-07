@@ -5,7 +5,6 @@ int ans[15][15];
 int x2,y2;  // 终点
 void dfs(int x,int y,int cnt)   // x,y：当前走到了哪个点；cnt：当前已走了几步
 {
-    // 其实还可以进行其它剪枝，留作思考题
     if(cnt>=ans[x][y]) return;   // 若当前花费的步数已经大于等于之前走到此处花费的步数，则不用继续走了
     ans[x][y]=min(ans[x][y],cnt);   // 更新答案
     if(x==x2&&y==y2) return;    // 若走到终点则不用走了

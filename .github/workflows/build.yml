@@ -1,0 +1,34 @@
+name: CI
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+
+      - name: Build problem.tex
+        uses: xu-cheng/latex-action@v2
+        with:
+          root_file: problem.tex
+          working_directory: problem
+          latexmk_use_xelatex: true
+
+      - name: Build solution.tex
+        uses: xu-cheng/latex-action@v2
+        with:
+          root_file: solution.tex
+          working_directory: solution
+          latexmk_use_xelatex: true
+
+      - name: Release Package
+        uses: marvinpinto/action-automatic-releases@latest
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: latest
+          prerelease: false
+          files: |
+            problem/problem.pdf
+            solution/solution.pdf
