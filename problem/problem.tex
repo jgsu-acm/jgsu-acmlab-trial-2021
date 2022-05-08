@@ -229,6 +229,7 @@ AgOH 会对你进行 $m$ 次询问，每次询问一个区间 $[l,r]$，请你�
 }
 
 \makeproblem
+\newcommand{\mahjong}[1]{\raisebox{-.4\height}{\includegraphics[scale=0.5]{images/mahjong/#1.png}}}
 \section*{题目描述}
 
 本次比赛实验室内座位布局方式参考……打麻将。
@@ -237,26 +238,30 @@ AgOH 会对你进行 $m$ 次询问，每次询问一个区间 $[l,r]$，请你�
 
 当然比赛过程中打一局完整的麻将是不现实的，你只需要判断一副手牌是否是和牌即可。
 
-\begin{remark}
-    \hspace{0.15cm} \textbf{和牌规则}：对于手中的14张手牌，和牌需达成以下条件：
+\begin{quote}
+    \hspace{0.15cm} 和牌规则：对于手中的14张手牌，和牌需达成以下条件：
 
     \begin{itemize}
-        \item 有一个 \textbf{雀头}。
-        \item 有四个 \textbf{面子}。
-        \item 雀头和各个面子间没有交叉的牌
+        \item 有一个雀头；
+        \item 有四个面子；
+        \item 雀头和各个面子间没有交叉的牌。
     \end{itemize}
 
-    \hspace{0.15cm} \textbf{雀头}：两张同花色的牌，如 \includegraphics[scale=0.5]{images/mahjong/1s.png}\includegraphics[scale=0.5]{images/mahjong/1s.png}
+    \begin{quote}
+        雀头：两张同样的牌，如 \mahjong{1s} \mahjong{1s}；
 
-    \hspace{0.15cm} \textbf{面子}：包括 \textbf{刻子} 和 \textbf{顺子} (不要问为啥没杠，莫抬杠)
+        面子：包括刻子和顺子（不要问为啥没杠，莫抬杠）：
 
-    \begin{itemize}
-        \item \textbf{刻子}：三张同花色的牌，如 \includegraphics[scale=0.5]{images/mahjong/1m.png}\includegraphics[scale=0.5]{images/mahjong/1m.png}\includegraphics[scale=0.5]{images/mahjong/1m.png}。
-        \item \textbf{顺子}：三张相邻的同类型牌（只包括条/索、饼/筒、万三种），如 \includegraphics[scale=0.5]{images/mahjong/1m.png}\includegraphics[scale=0.5]{images/mahjong/2m.png}\includegraphics[scale=0.5]{images/mahjong/3m.png}。
+        \begin{itemize}
+            \item 刻子：三张同样的牌，如 \mahjong{1m} \mahjong{1m} \mahjong{1m}；
+            \item 顺子：三张相邻的同类型牌（只包括条/索、饼/筒、万三种），如 \mahjong{1m} \mahjong{2m} \mahjong{3m}。
 
-              \includegraphics[scale=0.5]{images/mahjong/9m.png} 与 \includegraphics[scale=0.5]{images/mahjong/1m.png}、\includegraphics[scale=0.5]{images/mahjong/9p.png} 与 \includegraphics[scale=0.5]{images/mahjong/1p.png}、\includegraphics[scale=0.5]{images/mahjong/9s.png} 与 \includegraphics[scale=0.5]{images/mahjong/1s.png} 不算作相邻
-    \end{itemize}
-\end{remark}
+                  \begin{remark}
+                      \mahjong{1m} 与 \mahjong{9m}、\mahjong{1p} 与 \mahjong{9p}、\mahjong{1s} 与 \mahjong{9s} 不算作相邻。
+                  \end{remark}
+        \end{itemize}
+    \end{quote}
+\end{quote}
 
 \section*{输入格式}
 
@@ -265,24 +270,24 @@ AgOH 会对你进行 $m$ 次询问，每次询问一个区间 $[l,r]$，请你�
 第 $2 \sim t+1$ 行，每行 $14$ 个用空格分隔开的双字符字符串，代表一副手牌。手牌表示规则如下：
 
 \begin{itemize}
-    \item 一个 $1 \sim 9$ 的数字 $x+$ 一个小写字母 $b$，代表 $x$ 饼（也叫 $x$ 筒）。例如 $2b$ 代表 \includegraphics[scale=0.5]{images/mahjong/2p.png}。
-    \item 一个 $1 \sim 9$ 的数字 $x+$ 一个小写字母 $t$，代表 $x$ 条（也叫 $x$ 索）。例如 $8t$ 代表 \includegraphics[scale=0.5]{images/mahjong/8s.png}。
-    \item 一个 $1 \sim 9$ 的数字 $x+$ 一个小写字母 $w$，代表 $x$ 万。例如 $5w$ 代表 \includegraphics[scale=0.5]{images/mahjong/5m.png}。
-    \item 一个 $1 \sim 7$ 的数字 $x+$ 一个小写字母 $z$，从 $1z \sim 7z$ 分别代表 \includegraphics[scale=0.5]{images/mahjong/1z.png}、\includegraphics[scale=0.5]{images/mahjong/2z.png}、\includegraphics[scale=0.5]{images/mahjong/3z.png}、\includegraphics[scale=0.5]{images/mahjong/4z.png}、\includegraphics[scale=0.5]{images/mahjong/5z.png}、\includegraphics[scale=0.5]{images/mahjong/6z.png}、\includegraphics[scale=0.5]{images/mahjong/7z.png}。
+    \item 一个 $1 \sim 9$ 的数字 $x+$ 一个小写字母 $b$，代表 $x$ 饼（也叫 $x$ 筒）。例如 $2b$ 代表 \mahjong{2p}。
+    \item 一个 $1 \sim 9$ 的数字 $x+$ 一个小写字母 $t$，代表 $x$ 条（也叫 $x$ 索）。例如 $8t$ 代表 \mahjong{8s}。
+    \item 一个 $1 \sim 9$ 的数字 $x+$ 一个小写字母 $w$，代表 $x$ 万。例如 $5w$ 代表 \mahjong{5m}。
+    \item 一个 $1 \sim 7$ 的数字 $x+$ 一个小写字母 $z$，从 $1z \sim 7z$ 分别代表 \mahjong{1z}、\mahjong{2z}、\mahjong{3z}、\mahjong{4z}、\mahjong{5z}、\mahjong{6z}、\mahjong{7z}。
 \end{itemize}
 
 数据保证只会出现以上样式的牌。与正常的一副麻将不同，每张牌的出现次数\textbf{不限}，例如可能出现 14 张白的情况，且这种情况是和牌。
 
 \section*{输出格式}
 
-共 $t$ 行，第 $i$ 行代表第 $i$ 组数据的答案：若该组牌为和牌，输出 \texttt{Tsumo!}；反之输出 \texttt{Waiting for Tsumo!}
+共 $t$ 行，第 $i$ 行代表第 $i$ 组数据的答案：若该组牌为和牌，输出 \texttt{Tsumo!}；反之输出 \texttt{Waiting for Tsumo!}。
 
 \section*{输入输出样例}
 
 \testcasetab
 {
     2\par
-    1w 2w 3w 4b 5b 6b 7t 8t 9t 1b 1b 1z 2z 6z
+    1w 2w 3w 4b 5b 6b 7t 8t 9t 1b 1b 1z 2z 6z\par
     1w 2w 3w 4b 5b 6b 7t 8t 9t 1b 1b 2z 2z 2z
 }
 {
@@ -294,16 +299,16 @@ AgOH 会对你进行 $m$ 次询问，每次询问一个区间 $[l,r]$，请你�
 
 【样例解释】
 
-第一副手牌为
+第一副手牌为：
 
 \begin{center}
-    \includegraphics[scale=0.5]{images/mahjong/1m.png}\includegraphics[scale=0.5]{images/mahjong/2m.png}\includegraphics[scale=0.5]{images/mahjong/3m.png}\includegraphics[scale=0.5]{images/mahjong/4p.png}\includegraphics[scale=0.5]{images/mahjong/5p.png}\includegraphics[scale=0.5]{images/mahjong/6p.png}\includegraphics[scale=0.5]{images/mahjong/7s.png}\includegraphics[scale=0.5]{images/mahjong/8s.png}\includegraphics[scale=0.5]{images/mahjong/9s.png}\includegraphics[scale=0.5]{images/mahjong/1p.png}\includegraphics[scale=0.5]{images/mahjong/1p.png}\includegraphics[scale=0.5]{images/mahjong/1z.png}\includegraphics[scale=0.5]{images/mahjong/2z.png}\includegraphics[scale=0.5]{images/mahjong/6z.png}
+    \mahjong{1m} \mahjong{2m} \mahjong{3m} \mahjong{4p} \mahjong{5p} \mahjong{6p} \mahjong{7s} \mahjong{8s} \mahjong{9s} \mahjong{1p} \mahjong{1p} \mahjong{1z} \mahjong{2z} \mahjong{6z}
 \end{center}
 
-第二副手牌为
+第二副手牌为：
 
 \begin{center}
-    \includegraphics[scale=0.5]{images/mahjong/1m.png}\includegraphics[scale=0.5]{images/mahjong/2m.png}\includegraphics[scale=0.5]{images/mahjong/3m.png}\includegraphics[scale=0.5]{images/mahjong/4p.png}\includegraphics[scale=0.5]{images/mahjong/5p.png}\includegraphics[scale=0.5]{images/mahjong/6p.png}\includegraphics[scale=0.5]{images/mahjong/7s.png}\includegraphics[scale=0.5]{images/mahjong/8s.png}\includegraphics[scale=0.5]{images/mahjong/9s.png}\includegraphics[scale=0.5]{images/mahjong/1p.png}\includegraphics[scale=0.5]{images/mahjong/1p.png}\includegraphics[scale=0.5]{images/mahjong/2z.png}\includegraphics[scale=0.5]{images/mahjong/2z.png}\includegraphics[scale=0.5]{images/mahjong/2z.png}
+    \mahjong{1m} \mahjong{2m} \mahjong{3m} \mahjong{4p} \mahjong{5p} \mahjong{6p} \mahjong{7s} \mahjong{8s} \mahjong{9s} \mahjong{1p} \mahjong{1p} \mahjong{2z} \mahjong{2z} \mahjong{2z}
 \end{center}
 
 \makeproblem
@@ -315,11 +320,11 @@ AgOH 会对你进行 $m$ 次询问，每次询问一个区间 $[l,r]$，请你�
 
 干员异客的攻击方式为：“攻击造成\textbf{法术伤害}，且会在 $4$ 个敌人间跳跃，每次跳跃伤害降低 $15 \%$ 并造成短暂停顿”。即：若敌人被击中时，当前攻击已经击中了 $i$ 个人，则该攻击会对其造成 $(85 \%)^i$ 倍的\textbf{法术伤害}。
 
-法术伤害会受到敌人\textbf{法抗}的百分比削减，即若对一个\textbf{法抗}为 $p \%$ 的敌人造成 $s$ 点\textbf{法术伤害}，该敌人仅会受到 $s \times (1-p \%)$ 点\textbf{真实伤害}。
+法术伤害会受到敌人\textbf{法抗}的百分比削减，即若对一个\textbf{法抗}为 $p \%$ 的敌人造成 $s$ 点法术伤害，该敌人仅会受到 $s \times (1-p \%)$ 点\textbf{真实伤害}。
 
 假设敌人具有无限点血量，给出异客的攻击力和四个被击中的敌人的法抗，请你计算出异客一次攻击对所有敌人共造成了多少\textbf{真实伤害}。
 
-注意：因为敌人的血量为整数，所以对\textbf{每个敌人}打出的\textbf{真实伤害}都需要向下取整。因浮点误差影响，所输出答案与真实答案之间允许有 $2$ 以内的误差。
+注意：因为敌人的血量为整数，所以对\textbf{每个敌人}打出的真实伤害都需要向下取整。因浮点误差影响，所输出答案与真实答案之间允许有 $2$ 以内的误差。
 
 \section*{输入格式}
 
