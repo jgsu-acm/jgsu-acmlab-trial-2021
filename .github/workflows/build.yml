@@ -15,6 +15,7 @@ jobs:
           root_file: problem.tex
           working_directory: problem
           latexmk_use_xelatex: true
+          args: -jobname=${{ github.event.repository.name }}-problem
 
       - name: Build solution.tex
         uses: xu-cheng/latex-action@v2
@@ -22,6 +23,7 @@ jobs:
           root_file: solution.tex
           working_directory: solution
           latexmk_use_xelatex: true
+          args: -jobname=${{ github.event.repository.name }}-solution
 
       - name: Release Package
         uses: marvinpinto/action-automatic-releases@latest
@@ -30,5 +32,5 @@ jobs:
           automatic_release_tag: latest
           prerelease: false
           files: |
-            problem/problem.pdf
-            solution/solution.pdf
+            problem/${{ github.event.repository.name }}-problem.pdf
+            solution/${{ github.event.repository.name }}-solution.pdf
